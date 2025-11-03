@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Hunting</title>
+
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google font (poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind and daisy UI cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind and daisy UI cdn (v-4) -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.24/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind customization -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        firstColor: '#0d6efd0d',
+                    },
+                    fontFamily: {
+                        poppins: ["Poppins", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS customization -->
+    <style>
+    </style>
+</head>
+
+<body class="font-poppins">
+    <!-- ***** Header Section ***** -->
+    <header class="bg-firstColor px-4 py-6">
+        <!-- nav section -->
+        <nav class="container mx-auto flex justify-between items-center py-8">
+            <a class="text-xl font-bold" href="#">Hot Gadgets</a>
+            <button class="btn bg-blue-500 text-white text-lg px-8">
+                Sign Up
+            </button>
+        </nav>
+        <!-- hero section -->
+        <div class="container mx-auto ">
+            <div class="flex flex-col justify-center items-center gap-5 pt-12 mb-5">
+                <h1 class="md:text-5xl text-2xl font-bold">
+                    Apple Iphone 13 Pro Max
+                </h1>
+                <p class="w-3/4 text-center text-lg">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in some form, by injected humou.
+                </p>
+                <button class="btn bg-blue-500 text-white text-lg px-8">
+                    Buy Now
+                </button>
+            </div>
+
+            <!-- hero image -->
+            <div class=" max-w-screen-sm mx-auto hidden md:flex items-center justify-center px-1 ">
+                <img class="inline w-[35%]" src="images/hero-small.png" alt="">
+                <img class="inline w-[50%]" src="images/hero-big.png" alt="">
+                <img class="inline w-[35%]" src="images/hero-small.png" alt="">
+            </div>
+        </div>
+    </header>
+
+    <!-- ***** Main Section ***** -->
+    <main class="container mx-auto py-20 px-20">
+        <!-- search section -->
+        <section class="text-center">
+            <h2 class="text-3xl font-bold mb-5">Search your phone</h2>
+            <div class="flex flex-col md:flex-row gap-2  text-center">
+                <label class="input border border-gray-200 md:w-[80%] ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="search-field" class="text-lg" type="search" placeholder="Search your phone" />
+                </label>
+                <button onclick="handleSearch()" class="btn bg-blue-500 text-white text-lg px-8 ">
+                    Search
+                </button>
+            </div>
+        </section>
+
+        <!-- section phone container -->
+        <section class="mt-12">
+            <div id="loading-spinner" class="text-center my-40 hidden">
+                <span class="loading loading-spinner loading-lg"></span>
+            </div>
+            <div id="phone-container" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+                <!-- <div class="card border border-gray-300 shadow-lg">
+                    <figure class="px-10 pt-10">
+                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                            alt="Shoes" class="rounded-xl" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part, and inside body there are title and actions parts
+                        </p>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Buy Now</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- show all button -->
+            <div id="show-all-container" class="text-center mt-5 hidden ">
+                <button onclick="handleShowAll()" class="btn btn-primary">Show All</button>
+            </div>
+        </section>
+
+        <!-- section show all model -->
+        <section>
+            <!-- Open the modal using ID.showModal() method -->
+            <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                    <div id="show-detail-container"></div>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn bg-red-500 text-white">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </section>
+
+    </main>
+
+    <!-- ***** Footer Section ***** -->
+    <footer class="bg-firstColor py-20 px-32">
+        <div class="container mx-auto">
+            <!-- footer top -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3">
+                <div>
+                    <h2 class="text-3xl font-bold mb-1">Hot Gadgets</h2>
+                    <p class="text-sm">You can definitely work.</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-5">
+                    <!-- social icon -->
+                    <div class="space-x-2">
+                        <a class="bg-white rounded-full p-1" href="#"><i
+                                class="fa-brands fa-facebook-f text-blue-500"></i></a>
+                        <a class="bg-white rounded-full p-1" href="#"><i
+                                class="fa-brands fa-twitter text-blue-600"></i></a>
+                        <a class="bg-white rounded-full p-1" href="#"><i
+                                class="fa-brands fa-instagram text-red-400"></i></a>
+                    </div>
+                    <!-- button -->
+                    <button class="btn bg-blue-500 text-white text-lg px-8">
+                        Join Premium
+                    </button>
+                </div>
+            </div>
+            <hr class="border border-gray-400 my-8">
+            <!-- footer bottom -->
+            <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-col-1 justify-between  gap-8">
+                <!-- footer card -->
+                <div class="flex flex-col gap-2 text-lg font-semibold">
+                    <a href="#">Product</a>
+                    <a href="#">Browse jobs</a>
+                    <a href="#">Remote jobs</a>
+                    <a href="#">Startup jobs</a>
+                    <a href="#">Company jobs</a>
+                </div>
+                <div class="flex flex-col gap-2 text-lg font-semibold">
+                    <a href="#">Product</a>
+                    <a href="#">Browse jobs</a>
+                    <a href="#">Remote jobs</a>
+                    <a href="#">Startup jobs</a>
+                    <a href="#">Company jobs</a>
+                </div>
+                <div class="flex flex-col gap-2 text-lg font-semibold">
+                    <a href="#">Product</a>
+                    <a href="#">Browse jobs</a>
+                    <a href="#">Remote jobs</a>
+                    <a href="#">Startup jobs</a>
+                    <a href="#">Company jobs</a>
+                </div>
+                <div class="flex flex-col gap-2 text-lg font-semibold">
+                    <a href="#">Product</a>
+                    <a href="#">Browse jobs</a>
+                    <a href="#">Remote jobs</a>
+                    <a href="#">Startup jobs</a>
+                    <a href="#">Company jobs</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- javascript files -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
